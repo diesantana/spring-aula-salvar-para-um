@@ -1,6 +1,7 @@
 package com.devsuperior.aula.controllers;
 
 
+import com.devsuperior.aula.dto.PersonDTO;
 import com.devsuperior.aula.dto.PersonDepartmentDTO;
 import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
@@ -23,8 +24,8 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping
-    public ResponseEntity<PersonDepartmentDTO> insert(@RequestBody  PersonDepartmentDTO dto) {
-        PersonDepartmentDTO response = personService.insert(dto);
+    public ResponseEntity<PersonDTO> insert(@RequestBody  PersonDTO dto) {
+        PersonDTO response = personService.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(response.getId()).toUri();
         return ResponseEntity.created(uri).body(response);
